@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+# The first utterance of the Agnostic Harness. Wire this as your harness startup
+# banner so it is the first thing emitted, before any agent acts.
+#   - A fixed opening maxim (the creed) is printed first.
+#   - Below it, a rotating "maxim of the day" from maxims.txt (public-domain wisdom).
+#     Edit maxims.txt to change or extend the rotating pool. See README.md.
+DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+MAXIMS="$DIR/maxims.txt"
+
+cat <<'EOF'
+
+  ◆  THE AGNOSTIC HARNESS  ◆
+
+  "No longer talk about the kind of man a good man ought to be — be such."
+                                                        — Marcus Aurelius
+EOF
+
+# --- Rotating maxim of the day, from maxims.txt ---
+if [ -f "$MAXIMS" ]; then
+  N=$(grep -c . "$MAXIMS")
+  if [ "$N" -gt 0 ]; then
+    DAY=$(date +%j | sed 's/^0*//')
+    [ -z "$DAY" ] && DAY=0
+    IDX=$(( (DAY % N) + 1 ))
+    MAXIM=$(sed -n "${IDX}p" "$MAXIMS")
+    [ -n "$MAXIM" ] && printf '\n  \342\227\207 %s\n\n' "$MAXIM"
+  fi
+fi
