@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/banner.png" alt="The Agnostic Harness — a secular conduct codex for AI coding agents" width="100%">
+</p>
+
 # The Agnostic Harness
 
 > A small conduct codex that rides in your agent's context and holds it to the discipline its capability already implies.
