@@ -93,6 +93,10 @@ Persistence is for technical walls only — it stops at real gates
 
 **Intensity scales to the task.** The codex is always active but never heavy. A one-line fix invokes it lightly; a destructive migration, a payment path, or a release invokes every rule at full weight. The agent reads the stakes and turns the dial itself — you don't maintain per-task profiles.
 
+## The first word
+
+Every session opens with a maxim — a fixed opening line, then a rotating *maxim of the day* drawn from a small pool of public-domain wisdom (Marcus Aurelius, Seneca, Epictetus, and others). It's the secular counterpart to a blessing: a steadying word before the work. See **[MAXIMS.md](MAXIMS.md)**; [`bin/maxim`](bin/maxim) emits it, and the session-start hook prints it first. Edit [`maxims.txt`](maxims.txt) to curate the rotating pool.
+
 ## Status
 
 Early, but real and runnable today. What ships with it:
@@ -101,6 +105,7 @@ Early, but real and runnable today. What ships with it:
 - A reference **session-start hook** that loads it into every session.
 - **Starter agents** pre-wired to the codex, to copy or diff against your own.
 - A worked **before/after example**: the same task run with and without the harness, so you can see the floor move rather than take it on faith.
+- A fixed opening **maxim** plus a rotating *maxim of the day* ([MAXIMS.md](MAXIMS.md), [`bin/maxim`](bin/maxim), [`maxims.txt`](maxims.txt)).
 
 It's small on purpose. The intent is a codex you can read in two minutes, adopt in one, and check in one line per rule — not a platform to onboard onto.
 
