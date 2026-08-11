@@ -1,3 +1,6 @@
 node_modules/
 .DS_Store
 *.log
+
+# repo assets/ — override the case-insensitive global /Assets/ ignore (macOS)
+!/assets/
