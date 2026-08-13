@@ -23,7 +23,7 @@ if [ -f "$MAXIMS" ]; then
     DAY=$(date +%j | sed 's/^0*//')
     [ -z "$DAY" ] && DAY=0
     IDX=$(( (DAY % N) + 1 ))
-    MAXIM=$(sed -n "${IDX}p" "$MAXIMS")
+    MAXIM=$(grep . "$MAXIMS" | sed -n "${IDX}p")
     [ -n "$MAXIM" ] && printf '\n  \342\227\207 %s\n\n' "$MAXIM"
   fi
 fi
