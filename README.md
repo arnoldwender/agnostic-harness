@@ -116,3 +116,9 @@ It's small on purpose. The intent is a codex you can read in two minutes, adopt 
 ---
 
 *This is a secular edition of a small family of conduct harnesses. The disciplines are shared across the family; this edition states them in plain secular terms — reason and craft alone.*
+
+## License
+
+**MIT** — see [LICENSE](LICENSE). A [`CITATION.cff`](CITATION.cff) (CC-BY-4.0) gives the
+citable form. MIT keeps the one thing that actually protects users — the liability
+disclaimer — while letting the codex be pasted anywhere without attribution friction.
