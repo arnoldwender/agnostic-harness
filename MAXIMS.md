@@ -8,8 +8,9 @@
 ## The opening maxim (fixed)
 
 ```text
-"No longer talk at all about the kind of man that a good man ought to be, but be such."
-                                                             — Marcus Aurelius
+  "No longer talk at all about the kind of man that a good man ought
+   to be, but be such."
+                          — Marcus Aurelius, Meditations 10.16 (tr. George Long)
 ```
 
 Chosen because it *is* the Navigator's fourth rule in one line: done is what you do, not what
@@ -31,7 +32,7 @@ The current pool:
 > - *The superior man is modest in his speech, but exceeds in his actions.* — Confucius
 > - *If you know the enemy and know yourself, you need not fear the result of a hundred battles.* — Sun Tzu
 > - *Any man can make a mistake, but only a fool persists in his error.* — Cicero
-> - *Read not to contradict and confute; nor to believe and take for granted; but to weigh and consider.* — Francis Bacon
+> - *Read not to contradict and confute; nor to believe and take for granted; nor to find talk and discourse; but to weigh and consider.* — Francis Bacon
 > - *Truth is the daughter of time, not of authority.* — Francis Bacon
 > - *A man's character is his fate.* — Heraclitus
 > - *Much learning does not teach understanding.* — Heraclitus
