@@ -1,0 +1,25 @@
+# UNVERIFIED ENGLISH. The Latin is real; the English is a modern paraphrase.
+#
+# Latin, Philippics 12.2.5:
+#   Cuiusvis hominis est errare, nullius nisi insipientis in errore perseverare.
+#
+# C. D. Yonge's translation - public domain, and the one Perseus serves -
+# renders it:
+#   "Any man is liable to a mistake; but no one but a downright fool will
+#    persist in error."
+#
+# The pool line is neither Yonge nor any other located edition. Measured
+# 2026-09-10 against the Perseus setting of Yonge, Philippic 12, chapter 2.
+work: "Philippicae, Twelfth Philippic, 2.5"
+author: "Marcus Tullius Cicero"
+author_born: -106
+author_died: -43
+year: -43
+edition: "Latin delivered 43 BC. The public-domain English is C. D. Yonge's; the pool matches it in sense but not in wording."
+pd_status_us: "The Latin original and the Yonge translation (1852) are public domain. The pool rendering has no identified translator."
+pd_status_eu: "Author died 43 BC. C. D. Yonge died 1891, so his translation is public domain. The pool rendering has no identified translator, so no EU term can be computed for it."
+source_url: "https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0021:speech=12:chapter=2"
+provenance: unverified
+provenance_note: "Locus confirmed (Philippics 12.2.5) and the Latin confirmed. What could NOT be confirmed is the English: it is not Yonge's wording and matches no located published translation. It is an accurate paraphrase of the Latin, not a quotation from an edition."
+quotes:
+  - "Any man can make a mistake, but only a fool persists in his error."

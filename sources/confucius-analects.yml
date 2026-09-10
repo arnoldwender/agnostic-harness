@@ -1,0 +1,22 @@
+# Both Analects lines in the pool are James Legge's wording, verbatim.
+#
+# Verified 2026-09-10: 2.17 against the Chinese Text Project's parallel edition
+# of Legge, which prints the line including its semicolon; 14.29 against the
+# same translation as catalogued on Wikiquote's James Legge page and reproduced
+# in the Legge Book XIV text.
+work: "The Confucian Analects, Books II and XIV"
+author: "Confucius"
+author_born: -551
+author_died: -479
+year: -479
+edition: "Compiled by disciples after Confucius' death. English from James Legge's The Chinese Classics, volume I, 1861."
+translator: "James Legge"
+translator_died: 1897
+posthumous: true
+pd_status_us: "Ancient original; the Legge translation was published 1861 - public domain."
+pd_status_eu: "Author died 479 BC. Translator James Legge died 1897, so 1897 + 70 = 1967 - public domain since 1968."
+source_url: "https://ctext.org/analects/wei-zheng"
+provenance: verified
+quotes:
+  - "When you know a thing, to hold that you know it; and when you do not know a thing, to allow that you do not know it - this is knowledge."
+  - "The superior man is modest in his speech, but exceeds in his actions."

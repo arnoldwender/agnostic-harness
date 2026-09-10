@@ -1,0 +1,31 @@
+# CONDENSATIONS, both lines. The fragments are real and the sense is right;
+# neither sentence is verbatim from the public-domain translation.
+#
+# Measured 2026-09-10 against G. T. W. Patrick's 1889 translation, The Fragments
+# of the Work of Heraclitus of Ephesus on Nature, full text on Internet Archive:
+#
+#   Fragment CXXI (Diels-Kranz B119): "A man's character is his daemon."
+#     The pool substitutes 'fate' for 'daemon'. That substitution is a real
+#     interpretive choice - daimon is not the Greek word for fate - and it is
+#     made silently.
+#
+#   Fragment XVI (Diels-Kranz B40): "Much learning does not teach one to have
+#     understanding, else it would have taught Hesiod and Pythagoras, and again
+#     Xenophanes and Hecataeus."
+#     The pool drops 'one to have' and the second clause.
+work: "Fragments, Diels-Kranz B119 and B40"
+author: "Heraclitus of Ephesus"
+author_born: -535
+author_died: -475
+year: -500
+edition: "Greek fragments preserved in later authors. English from G. T. W. Patrick, The Fragments of the Work of Heraclitus of Ephesus on Nature, Baltimore, 1889."
+translator: "G. T. W. Patrick"
+translator_died: 1950
+pd_status_us: "Ancient fragments; the Patrick translation was published 1889 - public domain."
+pd_status_eu: "Author died c. 475 BC. Translator G. T. W. Patrick died 1950, so 1950 + 70 = 2020 - the Patrick translation has been public domain in the EU since 1 January 2021."
+source_url: "https://archive.org/details/thefragmentsofth00herauoft"
+provenance: unverified
+provenance_note: "Loci confirmed (DK B119 and B40) and located in Patrick 1889. What could NOT be confirmed is the wording: Patrick reads 'A man's character is his daemon' where the pool reads 'his fate', and 'Much learning does not teach one to have understanding' where the pool drops three words. Both pool lines are condensations, not quotations from an edition."
+quotes:
+  - "A man's character is his fate."
+  - "Much learning does not teach understanding."

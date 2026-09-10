@@ -81,7 +81,9 @@ If you can genuinely beat one of these names, rename it — just keep it a digni
 
 ## The first word
 
-Every session opens with a maxim — a fixed opening line from Marcus Aurelius, then a rotating *maxim of the day* drawn from a small pool of public-domain wisdom (Seneca, Epictetus, Confucius, and others). It's the secular counterpart to a blessing: a steadying word before the work. See **[MAXIMS.md](MAXIMS.md)**; [`bin/maxim`](bin/maxim) emits it, and the session-start hook prints it first. Edit [`maxims.txt`](maxims.txt) to curate the rotating pool.
+Every session opens with a maxim — a fixed opening line from Marcus Aurelius, then a rotating *maxim of the day* drawn from a small pool of classical wisdom (Seneca, Epictetus, Confucius, and others). It's the secular counterpart to a blessing: a steadying word before the work. See **[MAXIMS.md](MAXIMS.md)**; [`bin/maxim`](bin/maxim) emits it, and the session-start hook prints it first. Edit [`maxims.txt`](maxims.txt) to curate the rotating pool.
+
+Every line carries a provenance file in [`sources/`](sources/) — work, author's dates, translator, source URL, and public-domain status per jurisdiction — and [`gate/citations.py`](gate/citations.py) refuses any quotation that does not resolve to one. Not every line comes back clean, and MAXIMS.md now says which: two rest on translations still under EU copyright, and seven are faithful condensations rather than quotations from an edition. Marking them is the point; a pool that reported uniform green would be the greener-than-the-code summary The Witness forbids.
 
 ## The gate — `gate/fail_open.py`
 
@@ -175,6 +177,7 @@ Early, but real and runnable today. What ships with it:
 - A worked **before/after example**: the same task run with and without the harness, so you can see the floor move rather than take it on faith.
 - A fixed opening **maxim** plus a rotating *maxim of the day* ([MAXIMS.md](MAXIMS.md), [`bin/maxim`](bin/maxim), [`maxims.txt`](maxims.txt)).
 - An executable falsifier, [`gate/fail_open.py`](gate/fail_open.py), with a test suite and a mutation check, run in CI on every push.
+- A second, smaller gate — [`gate/citations.py`](gate/citations.py) — that refuses any attributed quotation in this repo which does not resolve to a provenance file in [`sources/`](sources/). It is the one piece of gate logic shared verbatim across the conduct-harness family, because a fabricated citation is the same defect in every idiom.
 
 Reported straight, as The Witness demands: **one of the four disciplines has an
 executable falsifier here, and only one of its rules.** The gate automates The

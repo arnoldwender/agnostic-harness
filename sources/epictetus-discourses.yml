@@ -1,0 +1,34 @@
+# UNVERIFIED ENGLISH, both lines. The loci are real; the wordings are modern
+# condensations that match neither of the two public-domain translations.
+#
+# Measured 2026-09-10 against the full text of Elizabeth Carter's translation
+# (1768 printing of the 1758 edition, Internet Archive) and George Long's
+# (1887 printing), searched with whitespace normalisation so an OCR line break
+# cannot produce a false miss:
+#
+#   Discourses I.15.7 - Carter: "No great thing is brought to perfection
+#     suddenly, when not so much as a bunch of grapes or a fig is."
+#                      - Long:   "Nothing great, said Epictetus, is produced
+#     suddenly, since not even the grape or the fig is."
+#     The pool says "created". Neither translator wrote that.
+#
+#   Discourses II.17.1 - Carter: "it is impossible for any one to begin to learn
+#     what he hath a conceit that he already knows."
+#     The pool drops 'begin to' and modernises the rest.
+#
+# Both are kept and marked rather than swapped, because swapping them silently
+# would change what the harness emits without anyone being told.
+work: "Discourses, I.15.7 and II.17.1"
+author: "Epictetus"
+author_born: 50
+author_died: 135
+year: 108
+edition: "Greek, recorded by Arrian c. AD 108. Public-domain English exists in Elizabeth Carter (1758) and George Long (1877); the pool matches neither."
+pd_status_us: "The Greek original and both the Carter (1758) and Long (1877) translations are public domain. The pool renderings have no identified translator."
+pd_status_eu: "Author died c. 135. Carter died 1806 and Long died 1879, so both those translations are public domain. The pool renderings have no identified translator, so no EU term can be computed for them."
+source_url: "https://archive.org/details/bim_eighteenth-century_all-the-works-of-epictet_epictetus_1768_1"
+provenance: unverified
+provenance_note: "Loci confirmed: Discourses I.15.7 and II.17.1. What could NOT be confirmed is the English. Neither line appears in Carter (1758) or Long (1877), the two public-domain translations; both are modernised condensations circulating without a translator's name. They are paraphrases of Epictetus, not quotations from an edition."
+quotes:
+  - "It is impossible for a man to learn what he thinks he already knows."
+  - "No great thing is created suddenly."

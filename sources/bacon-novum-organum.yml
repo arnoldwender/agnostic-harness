@@ -1,0 +1,27 @@
+# CONDENSATION, not a verbatim translation.
+#
+# Novum Organum, Book I, Aphorism 84, Latin:
+#   Recte enim Veritas Temporis filia dicitur, non Auctoritatis.
+#
+# Spedding, Ellis and Heath - the standard public-domain English, on Wikisource -
+# render it inside a longer sentence:
+#   "rightly is truth called the daughter of time, not of authority"
+#
+# The pool line lifts that clause and reshapes it into a standalone aphorism.
+# The sense is exact and the locus is exact; the sentence as printed is not.
+# Verified 2026-09-10 against the Spedding text of Book I.
+work: "Novum Organum, Book I, Aphorism LXXXIV"
+author: "Francis Bacon"
+author_born: 1561
+author_died: 1626
+year: 1620
+edition: "Latin published 1620. English from the Spedding, Ellis and Heath translation, 1858."
+translator: "James Spedding, Robert Leslie Ellis and Douglas Denon Heath"
+translator_died: 1881
+pd_status_us: "Published 1620; the Spedding translation 1858 - public domain."
+pd_status_eu: "Author died 1626. James Spedding died 1881, the last of the three editors to die, so 1881 + 70 = 1951 - public domain."
+source_url: "https://en.wikisource.org/wiki/Novum_Organum/Book_I_(Spedding)"
+provenance: unverified
+provenance_note: "Locus confirmed (Novum Organum I.84) and the Latin confirmed. What could NOT be confirmed is the sentence as printed: Spedding reads 'rightly is truth called the daughter of time, not of authority' inside a longer clause. The pool line is a standalone condensation of it, faithful in sense but not verbatim from any located edition."
+quotes:
+  - "Truth is the daughter of time, not of authority."

@@ -1,0 +1,25 @@
+# The fixed opening banner of this harness, in bin/maxim and in MAXIMS.md.
+#
+# This file exists because the banner used to carry a DIFFERENT sentence:
+#   "No longer talk about the kind of man a good man ought to be - be such."
+# That wording matches no published translation. It was a condensation, and it
+# was attributed to a named translator, which is the worst combination: an
+# invented text wearing a real scholar's name. Commit c664c38 replaced it with
+# what George Long actually printed, and this file is the receipt.
+#
+# Verified 2026-09-10 against Standard Ebooks' setting of the Long translation,
+# Book X section 16, which reads the current banner word for word.
+work: "Meditations, Book X, section 16"
+author: "Marcus Aurelius"
+author_born: 121
+author_died: 180
+year: 180
+edition: "Written in Greek c. 170-180 AD. English from George Long's translation, first published 1862."
+translator: "George Long"
+translator_died: 1879
+pd_status_us: "Ancient original; the Long translation was published 1862 - public domain."
+pd_status_eu: "Author died 180. Translator George Long died 1879, so 1879 + 70 = 1949 - public domain since 1950."
+source_url: "https://standardebooks.org/ebooks/marcus-aurelius/meditations/george-long/text/book-10"
+provenance: verified
+quotes:
+  - "No longer talk at all about the kind of man that a good man ought to be, but be such."

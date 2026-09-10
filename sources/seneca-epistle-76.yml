@@ -1,0 +1,27 @@
+# NOT PUBLIC DOMAIN IN THE EU. Read pd_status_eu before reusing this line.
+#
+# This is Richard Mott Gummere's Loeb wording, verbatim, from Epistle 76.3 -
+# where Seneca is himself quoting a proverb. Verified 2026-09-10 against the
+# Wikisource setting of the Gummere translation, which prints:
+#
+#   "You should keep learning as long as you are ignorant, - even to the end of
+#    your life, if there is anything in the proverb. And the proverb suits the
+#    present case as well as any: As long as you live, keep learning how to live."
+#
+# Wikisource can host it because the Loeb volume is pre-1930 and therefore free
+# in the United States. That says nothing about Germany.
+work: "Ad Lucilium Epistulae Morales, Letter 76, section 3"
+author: "Lucius Annaeus Seneca"
+author_born: -4
+author_died: 65
+year: 64
+edition: "Latin written c. AD 64. English from Richard M. Gummere's Loeb Classical Library translation, volume II, 1920."
+translator: "Richard Mott Gummere"
+translator_died: 1969
+pd_status_us: "The Gummere Loeb volume was published 1920, before 1930 - public domain in the US."
+pd_status_eu: "Author died AD 65. The TRANSLATOR Richard Mott Gummere died 1969, so 1969 + 70 = 2039 and this English is under copyright in the EU until 1 January 2040. The Latin is free; Gummere's sentence is not."
+source_url: "https://en.wikisource.org/wiki/Moral_letters_to_Lucilius/Letter_76"
+provenance: verified
+provenance_note: "Attribution and wording are correct. The finding on this entry is the EU copyright term of the Gummere translation - the pool document claimed every line was public domain, and in the EU this one is not."
+quotes:
+  - "As long as you live, keep learning how to live."
