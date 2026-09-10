@@ -1,0 +1,17 @@
+# Permanent exemptions for gate/fail_open.py.
+#
+# One Python regex per line. A finding is dropped when the pattern matches
+# either the file path or the offending source line. `#` starts a comment at
+# the beginning of a line or after whitespace.
+#
+# Prefer the narrower escape hatch when you can: a `fail-open-ok` comment on
+# the line (or on the line above it, or inside a `fail-open-ok:begin` /
+# `fail-open-ok:end` region) keeps the reason next to the code, where the next
+# reader will actually see it. This file is for the cases that outlive a single
+# line - a vendored directory, a generated file, a third-party script.
+#
+# Examples, left commented on purpose so this file exempts nothing today:
+#
+#   ^vendor/            every path under vendor/
+#   ^third_party/.*\.sh$
+#   rm -rf .* \|\| true  a specific line, wherever it appears
