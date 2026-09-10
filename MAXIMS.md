@@ -35,23 +35,30 @@ dates, the translator, and the public-domain status **per jurisdiction** — and
 answer is not a uniform yes. An earlier version of this page claimed the whole pool was public
 domain. Measured 2026-09-10, that was wrong in two ways, both recorded rather than hidden:
 
-- **Two lines rest on translations still under EU copyright.** The Sun Tzu is Lionel Giles'
-  1910 English (Giles died 1958 → free in the EU in 2029) and the Seneca 76 is Gummere's Loeb
-  (Gummere died 1969 → 2040). Both are public domain in the US, which is what the sites
-  hosting them are going by. Arnold publishes from Germany.
+- **Two lines rested on translations still under EU copyright, and both are now fixed.** The
+  Sun Tzu was Lionel Giles' 1910 English (Giles died 1958 → free in the EU only in 2029); it
+  is now **E. F. Calthrop's 1908** rendering (Calthrop died 1915 → free everywhere). The
+  Seneca 76 was Gummere's Loeb (Gummere died 1969 → 2040); there is no complete English
+  *Epistulae Morales* free in both jurisdictions except Thomas Lodge's 1614, whose Jacobean
+  English does not work as an opening line — so that entry now prints the **Latin**, which is
+  public domain beyond argument, with the English marked `editor's gloss`.
 - **Seven lines are condensations, not quotations from an edition.** They render the original
   faithfully but match no published translation located, so they are marked
   `provenance: unverified` with a note naming what the real translators actually wrote.
 
+The rule underneath both: *the original text being ancient says nothing about the translation.*
+An English rendering is a separate work whose term runs from the translator's death, and
+Project Gutenberg hosting a text is evidence about US law and about nothing else.
+
 The current pool:
 
 > - *It is not because things are difficult that we do not dare; it is because we do not dare that things are difficult.* — Seneca
-> - *As long as you live, keep learning how to live.* — Seneca
+> - Tamdiu discendum est quamdiu nescias; si proverbio credimus, quamdiu vivas. *(editor's gloss: one must learn as long as one is ignorant — if we believe the proverb, as long as one lives)* — Seneca, Epistulae Morales 76.3
 > - *It is impossible for a man to learn what he thinks he already knows.* — Epictetus
 > - *No great thing is created suddenly.* — Epictetus
 > - *When you know a thing, to hold that you know it; and when you do not know a thing, to allow that you do not know it — this is knowledge.* — Confucius
 > - *The superior man is modest in his speech, but exceeds in his actions.* — Confucius
-> - *If you know the enemy and know yourself, you need not fear the result of a hundred battles.* — Sun Tzu
+> - *He who knows both sides has nothing to fear in a hundred fights.* — Sun Tzu, The Art of War, tr. E. F. Calthrop (1908)
 > - *Any man can make a mistake, but only a fool persists in his error.* — Cicero
 > - *Read not to contradict and confute; nor to believe and take for granted; nor to find talk and discourse; but to weigh and consider.* — Francis Bacon
 > - *Truth is the daughter of time, not of authority.* — Francis Bacon
