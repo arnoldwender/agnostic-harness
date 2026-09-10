@@ -1,25 +1,56 @@
-# NOT PUBLIC DOMAIN IN THE EU. Read pd_status_eu before reusing this line.
+# RESOLVED 2026-09-10 by changing translators, which is the cheapest fix in the
+# whole audit and the one worth understanding.
 #
-# The quotation is real and correctly worded - it is Lionel Giles' 1910 English,
-# verbatim, at Attack by Stratagem 18. The problem is not the citation, it is the
-# copyright: Giles died in 1958, and the EU term is life of the TRANSLATOR plus
-# seventy. The Chinese original has been out of copyright for two millennia; the
-# English sentence on top of it has not.
+# The pool used to print Lionel Giles's 1910 rendering. Giles's wording was
+# correct, verified verbatim, and hosted by Project Gutenberg - and none of that
+# is evidence about the EU. Giles died on 22 January 1958, so under
+# life-plus-70 his translation is protected in Germany until 1 January 2029.
+# Project Gutenberg hosting a text is evidence about US law and about nothing
+# else, and this repository is published from Germany.
 #
-# MAXIMS.md called the whole pool public domain. For this entry that claim was
-# false in the jurisdiction Arnold actually publishes from. Measured 2026-09-10.
-work: "Sun Tzu on the Art of War, III (Attack by Stratagem), 18"
-author: "Sun Tzu"
+# THE ORIGINAL IS NOT THE PROBLEM AND NEVER WAS. Verified 2026-09-10 against
+# Chinese Wikisource, 孫子兵法 謀攻第三:
+#
+#   是故百戰百勝，非善之善者也；不戰而屈人之兵，善之善者也。
+#   故曰：知彼知己，百戰不殆；不知彼而知己，一勝一負；不知彼不知己，每戰必殆。
+#
+# WHAT WAS NEEDED WAS AN OLDER TRANSLATOR, and one exists two years earlier than
+# Giles. Everard Ferguson Calthrop, 1876-1915, a Royal Field Artillery language
+# officer in Japan, published the first English Sun Tzu: a parallel-text
+# Sonshi in Tokyo in 1905 and then The Book of War, John Murray, London, 1908.
+# He was killed in 1915. 1915 plus 70 is 1985, so his translation entered the EU
+# public domain on 1 January 1986 and has been free in Germany for forty years.
+#
+# Verified verbatim on 2026-09-10 against the Cornell University Library copy
+# scanned by the Internet Archive (cu31924024039996), chapter III, "The Attack
+# by Stratagem", whose catalogue record gives the translator as "Calthrop, E. F.
+# (Everard Ferguson), 1876-1915". The two passages read there:
+#
+#   "To fight and conquer one hundred times is not the perfection of
+#    attainment, for the supreme art is to subdue the enemy without fighting."
+#
+#   "It has been said aforetime that he who knows both sides has nothing to fear
+#    in a hundred fights; he who is ignorant of the enemy, and fixes his eyes
+#    only on his own side, conquers, and the next time is defeated; ..."
+#
+# The first is printed whole. The second is printed from mid-sentence, so its
+# capital H is editorial and its full stop stands where Calthrop has a
+# semicolon - the ordinary convention for quoting a clause, declared here rather
+# than left for a reader to discover.
+work: "The Art of War (The Book of War, The Military Classic of the Far East)"
+author: "Sun Tzu (Sun Wu) - traditional attribution, historicity disputed"
 author_born: -544
 author_died: -496
-year: -500
-edition: "Chinese original c. 5th century BC. English from Lionel Giles, Sun Tzu on the Art of War, Luzac and Co., London, 1910."
-translator: "Lionel Giles"
-translator_died: 1958
-pd_status_us: "The Giles translation was published 1910, before 1930 - public domain in the US."
-pd_status_eu: "Author died c. 496 BC. The TRANSLATOR Lionel Giles died 1958, so 1958 + 70 = 2028 and the Giles English is under copyright in the EU until 1 January 2029. The Chinese original is free; this English rendering is not."
-source_url: "https://suntzusaid.com/book/3/18"
+year: -400
+posthumous: true
+edition: "Everard Ferguson Calthrop, The Book of War, John Murray, London, 1908; chapter III, The Attack by Stratagem. Calthrop's first version was the parallel-text Sonshi, the Chinese Military Classic, Tokyo, 1905. Sun Tzu's dates are the traditional 544-496 BC and his historical existence is disputed; scholarship dates the earliest parts of the text to the Warring States period, at least a century after him, hence the posthumous flag. The Chinese behind the two lines is 不戰而屈人之兵，善之善者也 and 知彼知己，百戰不殆, both in 謀攻第三."
+translator: "Everard Ferguson Calthrop"
+translator_died: 1915
+pd_status_us: "Public domain in the United States. Calthrop's translation was published in 1908, well before the pre-1930 threshold, and the Cornell copy on the Internet Archive carries the notice that there are no known US copyright restrictions on the text."
+pd_status_eu: "Public domain in the EU. EU protection runs for the translator's life plus 70 years: Everard Ferguson Calthrop died in 1915, and 1915 plus 70 is 1985, so this translation entered the EU public domain on 1 January 1986. Clear in Germany, where this repository is published. This is precisely why it replaced Lionel Giles's 1910 rendering, which is public domain in the United States but protected in the EU until 1 January 2029 because Giles died in 1958."
+source_url: "https://archive.org/details/cu31924024039996"
+source_url_secondary: "https://zh.wikisource.org/wiki/%E5%AD%AB%E5%AD%90%E5%85%B5%E6%B3%95"
 provenance: verified
-provenance_note: "Wording verified verbatim against Giles III.18. Sun Tzu's own dates are the traditional ones and his historicity is disputed by scholars - they are recorded here as tradition, not as measurement. The live finding on this entry is the EU copyright term of the Giles translation, not the attribution."
+provenance_note: "Both lines verified verbatim on 2026-09-10 against the scanned 1908 John Murray edition, and the Chinese verified independently against Chinese Wikisource. One editorial liberty, declared: the shorter line is quoted from the middle of Calthrop's sentence, so its initial capital and its final full stop are editorial while every word between them is his. Recorded so it is not lost: the lines this replaces were Giles's 'If you know the enemy and know yourself, you need not fear the result of a hundred battles' and 'Supreme excellence consists in breaking the enemy's resistance without fighting' - both accurate quotations of a translation that is simply not free where this repository is published."
 quotes:
-  - "If you know the enemy and know yourself, you need not fear the result of a hundred battles."
+  - "He who knows both sides has nothing to fear in a hundred fights."
