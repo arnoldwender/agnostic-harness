@@ -59,6 +59,20 @@ jobs:
           fi
           python3 gate/fail_open.py --base "$BASE" --sarif fail-open.sarif
 
+      - name: Citation gate (every quotation traces to sources/)
+        # Deliberately NOT behind `if: pull_request`. The fail-open gate reads a
+        # diff and has nothing to say on a push with no diff; this one reads the
+        # whole tree, so it means the same thing on every event. PyYAML is not
+        # installed on purpose: the gate carries a fallback parser for exactly
+        # this container, and running it here is what keeps that path honest.
+        run: python3 gate/citations.py --sarif citations.sarif
+
+      - name: Citation gate, online (manual runs only)
+        # Link rot is worth knowing about and is never a reason to block a commit
+        # that did not touch the link.
+        if: github.event_name == 'workflow_dispatch'
+        run: python3 gate/citations.py --online
+
       - name: Mutation check (do the tests defend the gate?)
         run: python3 tests/mutation_check.py
 
@@ -71,4 +85,12 @@ jobs:
         with:
           name: fail-open-sarif
           path: fail-open.sarif
+          if-no-files-found: ignore
+
+      - name: Upload citation SARIF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: citations-sarif
+          path: citations.sarif
           if-no-files-found: ignore

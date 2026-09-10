@@ -1,0 +1,25 @@
+# NOT PUBLIC DOMAIN IN THE EU. Read pd_status_eu before reusing this line.
+#
+# The quotation is real and correctly worded - it is Lionel Giles' 1910 English,
+# verbatim, at Attack by Stratagem 18. The problem is not the citation, it is the
+# copyright: Giles died in 1958, and the EU term is life of the TRANSLATOR plus
+# seventy. The Chinese original has been out of copyright for two millennia; the
+# English sentence on top of it has not.
+#
+# MAXIMS.md called the whole pool public domain. For this entry that claim was
+# false in the jurisdiction Arnold actually publishes from. Measured 2026-09-10.
+work: "Sun Tzu on the Art of War, III (Attack by Stratagem), 18"
+author: "Sun Tzu"
+author_born: -544
+author_died: -496
+year: -500
+edition: "Chinese original c. 5th century BC. English from Lionel Giles, Sun Tzu on the Art of War, Luzac and Co., London, 1910."
+translator: "Lionel Giles"
+translator_died: 1958
+pd_status_us: "The Giles translation was published 1910, before 1930 - public domain in the US."
+pd_status_eu: "Author died c. 496 BC. The TRANSLATOR Lionel Giles died 1958, so 1958 + 70 = 2028 and the Giles English is under copyright in the EU until 1 January 2029. The Chinese original is free; this English rendering is not."
+source_url: "https://suntzusaid.com/book/3/18"
+provenance: verified
+provenance_note: "Wording verified verbatim against Giles III.18. Sun Tzu's own dates are the traditional ones and his historicity is disputed by scholars - they are recorded here as tradition, not as measurement. The live finding on this entry is the EU copyright term of the Giles translation, not the attribution."
+quotes:
+  - "If you know the enemy and know yourself, you need not fear the result of a hundred battles."

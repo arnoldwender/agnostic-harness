@@ -1,0 +1,27 @@
+# UNVERIFIED ENGLISH. The Latin is real; the English sentence in the pool is not
+# a published translation of it.
+#
+# Latin, Epistulae Morales 104.26, confirmed:
+#   Non quia difficilia sunt non audemus, sed quia non audemus difficilia sunt.
+#
+# Gummere's Loeb - the standard English, and the one Wikisource carries - renders
+# that as something quite different:
+#   "Our lack of confidence is not the result of difficulty; the difficulty comes
+#    from our lack of confidence."
+#
+# The line in maxims.txt matches no published translation located on 2026-09-10.
+# It circulates on quotation sites without a translator's name attached to it.
+# It is kept, marked, and NOT presented as a verbatim translation.
+work: "Ad Lucilium Epistulae Morales, Letter 104, section 26"
+author: "Lucius Annaeus Seneca"
+author_born: -4
+author_died: 65
+year: 64
+edition: "Latin written c. AD 64. The English in the pool corresponds to no located published translation."
+pd_status_us: "The Latin original is public domain. The English rendering has no identified author, so no term can be computed for it."
+pd_status_eu: "Author died AD 65 - the Latin is public domain. The English rendering has no identified translator, so its EU status cannot be established."
+source_url: "https://www.thelatinlibrary.com/sen/seneca.ep17-18.shtml"
+provenance: unverified
+provenance_note: "Locus confirmed (Ep. 104.26) and the Latin confirmed. What could NOT be confirmed is the English: no published translation with this wording was located. Gummere (Loeb, 1925) reads 'Our lack of confidence is not the result of difficulty; the difficulty comes from our lack of confidence.' The pool line is an anonymous modern rendering of the Latin, and should be read as a paraphrase, not as a quotation from an edition."
+quotes:
+  - "It is not because things are difficult that we do not dare; it is because we do not dare that things are difficult."
