@@ -73,6 +73,11 @@ jobs:
         if: github.event_name == 'workflow_dispatch'
         run: python3 gate/citations.py --online
 
+      - name: Mutation check for the citation gate (do its tests defend it?)
+        # Separate from the repo's own mutation runner above: two gates, two
+        # runners, so a stale anchor in one cannot quietly disable the other.
+        run: python3 tests/mutation_check_citations.py
+
       - name: Mutation check (do the tests defend the gate?)
         run: python3 tests/mutation_check.py
 
