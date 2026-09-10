@@ -1,0 +1,74 @@
+# The Agnostic Harness runs its own executable falsifier on every push. The
+# Sentinel's rule is "refuse the cheap rescue"; this workflow is the check that
+# the repo does not ship one.
+#
+# Nothing here interpolates untrusted input into a shell. The base ref reaches
+# the script through the environment and is read back as a quoted "$BASE",
+# never as `${{ ... }}` inside a `run:` body: git permits characters in a ref
+# that a shell would read as syntax, and a fork PR controls its own ref names.
+name: fail-open gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  # A newer push on the same branch cancels the previous run; only the last one
+  # decides anything.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  fail-open:
+    name: fail-open gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The gate reads a diff, so it needs history. Under the default
+          # shallow clone the base ref does not exist and the gate exits 2 -
+          # correctly, and uselessly.
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: python -m pip install --upgrade pip pytest
+
+      - name: Self-check (the repo keeps its own promises)
+        run: python3 scripts/check.py
+
+      - name: Fail-open gate
+        env:
+          BASE: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          # Both values are commit SHAs, and both arrive through the environment.
+          # `github.event.before` is all zeros for the first push of a branch and
+          # there is no base sha outside a pull request, so fall back rather than
+          # let the gate exit 2 on a technicality.
+          if ! git rev-parse --verify -q "${BASE}^{commit}" > /dev/null; then
+            BASE="HEAD~1"
+          fi
+          python3 gate/fail_open.py --base "$BASE" --sarif fail-open.sarif
+
+      - name: Mutation check (do the tests defend the gate?)
+        run: python3 tests/mutation_check.py
+
+      - name: Tests
+        run: python3 -m pytest tests/ -q
+
+      - name: Upload SARIF
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fail-open-sarif
+          path: fail-open.sarif
+          if-no-files-found: ignore

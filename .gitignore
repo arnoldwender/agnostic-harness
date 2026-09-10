@@ -4,3 +4,10 @@ node_modules/
 
 # repo assets/ — override the case-insensitive global /Assets/ ignore (macOS)
 !/assets/
+
+# Python test artefacts (the gate ships a pytest suite)
+__pycache__/
+.pytest_cache/
+
+# SARIF the gate writes locally; CI keeps its copy as a build artefact
+*.sarif
