@@ -63,8 +63,11 @@ jobs:
         # Deliberately NOT behind `if: pull_request`. The fail-open gate reads a
         # diff and has nothing to say on a push with no diff; this one reads the
         # whole tree, so it means the same thing on every event. PyYAML is not
-        # installed on purpose: the gate carries a fallback parser for exactly
-        # this container, and running it here is what keeps that path honest.
+        # installed on purpose, and there is no fallback to keep honest: the gate
+        # parses sources/*.yml with a parser it ships itself, in every
+        # environment. Preferring an installed library was the one arrangement
+        # this repo's own axis forbids — a verdict that depends on what happens
+        # to be on the machine is a gate that fails open somewhere.
         run: python3 gate/citations.py --sarif citations.sarif
 
       - name: Citation gate, online (manual runs only)
