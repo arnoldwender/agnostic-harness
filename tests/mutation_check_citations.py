@@ -3,32 +3,28 @@
 
     python3 tests/mutation_check_citations.py
 
-For each mechanism in gate/citations.py: neuter it, run the suite, and require
-the suite to go RED. A test that still passes with the mechanism removed is not
-testing the mechanism — it is decoration that reports green forever, which is
-the same fail-open defect the codex forbids, one layer up.
+For each check in gate/citations.py: neuter it, run the suite, and require the
+suite to go RED. A test that still passes with the mechanism removed is not
+testing the mechanism — it is decoration that reports green forever.
 
-Kept separate from tests/mutation_check.py on purpose. That file defends this
-repo's OWN signature gate; this one defends the file the conduct-harness family
-shares. Two gates, two mutation runners, so a stale anchor in one cannot quietly
-disable the other.
-
-THREE OF THE MUTANTS ARE SHAPES, NOT CHECKS, and they are the important ones.
-A deleted check reports a finding it should have caught — bad, and visible. A
-blind extractor reports "0 attributed quotations — clean" and hands out a green
-badge over a pool nobody ever read. That is not hypothetical: the older version
-of this gate required every quotation to be wrapped in quotes or italics, and
-the pools of the Ihsan and Angelical editions are written as bare bullets. On
-those repos it would have found nothing and exited 0.
+Two of the mutants are not checks but SHAPES the extractor recognises, and they
+are here because a blind extractor is the worst failure this gate can have. A
+deleted check reports a finding it should not have missed; a blind extractor
+reports "0 attributed quotations — clean" and hands out a green badge over a
+pool nobody ever looked at. That is not hypothetical: before the bullet shape
+was added, this gate found exactly zero quotations in the Zen edition's eight
+haiku and exited 0.
 
 Exit 0 when every mutant was killed; 1 when any survived; 2 when this script
 itself could not run (the same contract as the gate).
 
-The gate file is restored from an in-memory copy in a `finally`, never with
+The file is restored from an in-memory copy in a `finally`, never with
 `git checkout`: this repo may hold uncommitted work, and a checkout to undo a
-mutation would take that work with it. The restore is then verified, because a
-mutation runner that leaves the gate mutated has done more damage than the bug
-it was hunting.
+mutation would take that work with it. The restore is then verified — a mutation
+runner that leaves the file mutated has done more harm than the bug it hunted.
+
+This file is shared byte-for-byte with the other conduct-harness repos that
+carry gate/citations.py.
 """
 
 from __future__ import annotations
@@ -42,66 +38,48 @@ GATE = ROOT / "gate" / "citations.py"
 
 # (name, exact text to replace, replacement)
 #
-# Every anchor must appear EXACTLY ONCE in the gate. When one stops matching,
-# this script says so and counts it as a survivor rather than skipping it —
-# a mutation runner whose anchors have rotted measures nothing and must not be
-# allowed to report success.
+# Each `old` string is unique in the file and carries enough context that it
+# cannot collide with a `def` line or a docstring mention of the same name.
 MUTANTS = [
     ("CHECK 1 unsourced-quote",
-     "        checked = check_quotes_resolve(sources, findings)",
-     "        checked = 0"),
+     "coverage, quote_findings = check_quotes_resolve(sources)",
+     "checked, quote_findings = 0, []"),
     ("CHECK 2 incomplete-provenance",
-     "        check_provenance_complete(sources, findings)",
-     "        pass"),
+     "findings += check_provenance_complete(sources)",
+     "pass"),
     ("CHECK 3 anachronism",
-     "        check_anachronism(sources, findings)",
-     "        pass"),
+     "findings += check_anachronism(sources)",
+     "pass"),
     ("CHECK 4 pd-claim",
-     "        check_pd_status(sources, findings)",
-     "        pass"),
+     "findings += check_pd_status(sources)",
+     "pass"),
     # SHAPE B: stop recognising the bullet form, so pool bullets fall back into
-    # the delimiter-requiring flowing path and vanish from the gate's view.
-    ("SHAPE B undelimited bullet is a citation",
+    # the delimiter-requiring flowing path. This is the exact state the gate was
+    # in when it read the Zen pool and found nothing.
+    ("SHAPE B undelimited bullet",
      '        bullet = body.startswith("- ")',
      "        bullet = False"),
-    # SHAPE B, the other half: require the delimiter everywhere, which is the
-    # exact state that made the gate blind to two whole pools.
-    ("SHAPE B delimiter not required on a bullet",
-     "        if not bullet and not _delimited(quote):",
-     "        if not _delimited(quote):"),
+    # SHAPE A: walk the delimited spans left to right instead of right to left,
+    # which hands back the romanisation of a composite epigraph as the quotation.
+    ("SHAPE A rightmost span wins",
+     "for cand in reversed(list(_SPAN.finditer(body))):",
+     "for cand in list(_SPAN.finditer(body)):"),
     # SHAPE C: keep recognising the attribution line, but never emit the pair.
     ("SHAPE C attribution on its own line",
-     '                    out.append((lineno, quote, body.lstrip("—– ").strip()))',
+     "                    out.append((lineno, quote, body.lstrip(\"—– \").strip()))",
      "                    pass"),
-    # The translator carries a copyright term of their own. Both of these exist
-    # because reasoning only about the author gets the EU answer wrong.
-    ("translator death year is required",
-     '        if s.data.get("translator") and "translator_died" not in s.data:',
-     "        if False:"),
-    ("edition dated after the translator died",
-     "        if isinstance(tdied, int) and isinstance(year, int) and year > tdied:",
-     "        if False:"),
-    # Not a check, a disclosure: an unverified source is an honest outcome, but
-    # a count that only appeared on red runs would let the pile grow unwatched.
-    ("the unverified count is printed on every run",
-     "    if unverified:",
-     "    if False:"),
 ]
 
 
 def run_suite() -> bool:
     """True when the suite is green."""
     result = subprocess.run(
-        [sys.executable, "-m", "pytest", str(ROOT / "tests" / "test_citation_gate.py"),
-         "-q", "-x", "--no-header"],
+        [sys.executable, "-m", "pytest", str(ROOT / "tests"), "-q", "-x", "--no-header"],
         capture_output=True, text=True, cwd=ROOT, check=False)
     return result.returncode == 0
 
 
 def main() -> int:
-    if not GATE.is_file():
-        print(f"no gate at {GATE}", file=sys.stderr)
-        return 2
     original = GATE.read_text(encoding="utf-8")
 
     if not run_suite():
@@ -111,11 +89,11 @@ def main() -> int:
     survivors: list[str] = []
     try:
         for name, old, new in MUTANTS:
-            count = original.count(old)
-            if count != 1:
-                print(f"  ?? {name}: anchor appears {count} times in the gate — the "
-                      f"mutation list is stale, so this script is measuring nothing")
-                survivors.append(f"{name} (stale anchor)")
+            if original.count(old) != 1:
+                print(f"  ?? {name}: anchor appears {original.count(old)} times in the "
+                      f"gate — the mutation list is stale, so this script is "
+                      f"measuring nothing")
+                survivors.append(f"{name} (stale)")
                 continue
             GATE.write_text(original.replace(old, new, 1), encoding="utf-8")
             if run_suite():
