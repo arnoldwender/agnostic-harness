@@ -199,3 +199,5 @@ It's small on purpose. The intent is a codex you can read in two minutes, adopt 
 **MIT** — see [LICENSE](LICENSE). A [`CITATION.cff`](CITATION.cff) (CC-BY-4.0) gives the
 citable form. MIT keeps the one thing that actually protects users — the liability
 disclaimer — while letting the codex be pasted anywhere without attribution friction.
+
+> *A quotation planted by the blocking falsifier and present in no source file.* — Nobody At All
