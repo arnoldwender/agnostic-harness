@@ -84,6 +84,15 @@ jobs:
       - name: Mutation check (do the tests defend the gate?)
         run: python3 tests/mutation_check.py
 
+      - name: Mutation check (do the tests defend the live hook?)
+        run: python3 tests/mutation_check_fail_open_hook.py
+
+      - name: Live hook (a planted swallow in a Bash call is warned about, never blocked)
+        # The runtime's payload shape, once, end to end. The planted token lives
+        # in a JSON fixture: this repo's own gate reads shell and YAML and would,
+        # correctly, report it if it were written into this file.
+        run: python3 tests/live_hook_smoke.py tests/fixtures/planted-bash.json ignored-failure
+
       - name: Tests
         run: python3 -m pytest tests/ -q
 

@@ -748,6 +748,11 @@ STDERR_GONE = re.compile(
 COND_HEAD = re.compile(r"^\s*(?:!\s*)?(?:if|elif|while|until|case)\b")
 REAL_HANDLER = re.compile(
     r"\|\|\s*(?!(?:/(?:usr/)?bin/)?(?:true|:)\s*(?:[;&|)}]|$))\S")
+# `cmd 2>/dev/null && next` - the status gates what follows, so it IS read. Only
+# up to the next `;`: after that the `&&` belongs to a different statement.
+# Measured before this existed, on 27,426 real shell calls: 23.8 % of them were
+# flagged, and the chained form was the bulk of it.
+STATUS_CHAINED = re.compile(r"^[^;\n]*&&")
 SET_PLUS_E = re.compile(r"^\s*set\s+(?:-[A-Za-z]+\s+)*\+[A-Za-z]*e[A-Za-z]*\b")
 SET_MINUS_E = re.compile(r"^\s*set\s+(?:\+[A-Za-z]+\s+)*-[A-Za-z]*e[A-Za-z]*\b")
 
@@ -812,7 +817,10 @@ def _status_read_next(masked: list[str], index: int) -> bool:
 def check_swallowed_stderr(rel: str, lines: list[str], masked: list[str],
                            added: set[int], findings: list[Finding]) -> None:
     for n, ml in enumerate(masked, 1):
-        if n not in added or not STDERR_GONE.search(ml):
+        if n not in added:
+            continue
+        gone = STDERR_GONE.search(ml)
+        if not gone:
             continue
         if COND_HEAD.search(ml):
             continue                       # the status IS the condition
@@ -820,6 +828,8 @@ def check_swallowed_stderr(rel: str, lines: list[str], masked: list[str],
             continue                       # `|| return 1`, `|| die ...`
         if IGNORED_STATUS.search(ml):
             continue                       # already reported as ignored-failure
+        if STATUS_CHAINED.match(ml[gone.end():]):
+            continue                       # `cmd 2>/dev/null && next`: the status gates what follows
         if _status_read_next(masked, n):
             continue
         findings.append(Finding(

@@ -77,6 +77,7 @@ If you can genuinely beat one of these names, rename it — just keep it a digni
 
 - **Paste the block.** Drop the contents of [`codex-block.md`](codex-block.md) into the instructions your agent already reads — `AGENTS.md`, `CLAUDE.md`, a system prompt, whatever your harness loads. It is the single source the hook and your agent file share.
 - **Or wire the hook.** [`hooks/session-start.sh`](hooks/session-start.sh) emits the first word and the conduct block at the top of every session — see [hooks/](hooks/). Then it's not something you remember to include — it's always on.
+- **And the live one.** [`hooks/fail-open-before-run.py`](hooks/fail-open-before-run.py) runs the gate on every `Bash`, `Edit` and `Write` before it lands and warns the agent when the change swallows an error — see [hooks/](hooks/) and *Live, before the error is swallowed* below.
 - **Or install it as an Agent Skill.** [`SKILL.md`](SKILL.md) packages the same block in the
   [Agent Skills](https://agentskills.io/specification) format: clone this repository into your
   agent's skills directory as `agnostic-harness/` (the directory name must match the skill name).
@@ -171,6 +172,52 @@ check in turn and requires the suite to go red. A test that still passes with
 the mechanism removed is decoration reporting green forever — which is the same
 fail-open defect, one layer up.
 
+### Live, before the error is swallowed — `hooks/fail-open-before-run.py`
+
+The gate reads a diff, in CI or before a commit. By then the `except: pass`
+has been written, the test that depended on the error has been run against
+it, and the green it produced has been reported — and the cheapest rescue of
+all is typed straight into a shell (`npm test || true`) and never reaches a
+diff. So the same gate also runs as a Claude Code `PreToolUse` hook on `Bash`,
+`Edit`, `Write` and `MultiEdit`, against that one change, with the session's
+working directory as its root: the same checkers, the same `fail-open-ok`
+marker, the same allowlist. An `Edit` is simulated first — the file as it will
+be after the edit, whole, because the Python checker parses a module and an
+indented fragment on its own is an `IndentationError`, not a finding — and only
+the lines the edit wrote count as new. If the change swallows an error, the
+agent reads the finding **in the tool result**, and the change goes through:
+
+> fail-open: this command swallows an error before anyone can see it. [ignored-failure] line 1: `|| true` discards the exit status - this line reports success whatever happened. If the failure really is acceptable, say so with a `fail-open-ok` comment or an entry in fail-open-allow.txt The Sentinel · 3: refuse the cheap rescue. What you do not control must fail loudly, so that the part you do control — the response — can happen at all; an error nobody sees is not an error anybody handled. Log it, re-raise it, count it, or return an explicit error value. If swallowing really is correct here, say so on the line with a `fail-open-ok` comment, or add a pattern to .conduct/fail-open-allow.txt. Warning mode: this change is NOT blocked.
+
+Warning, not blocking, on purpose — and that is the thesis turned on the hook
+itself. A guard whose false-positive rate nobody has measured on real sessions
+is switched off by the first person it wrongly stops, and a hook that is
+switched off reports nothing forever, which looks exactly like clean work. So
+the hook fails open too: any error of its own is a receipt with `verdict:
+error` and exit 0, counted and never silent. Every run leaves a receipt
+(verdict, checks, counts — never a line of the file), so the rate is a number
+over your own sessions rather than a claim in this README.
+`FAIL_OPEN_HOOK_MODE=block` exists for whoever has measured theirs. Wiring,
+receipts and the limits it states in [hooks/](hooks/); 47 tests and 9 mutants,
+each mutant killed, in [`tests/`](tests/).
+
+**Measured before it shipped, over 80 recorded sessions on one machine** — the
+hook's own `judge` replayed over every real tool call in the transcripts, which
+is the number the receipts would have produced: 27,612 `Bash` calls, 173 warned
+(0.63 %) in 44 sessions, almost all of them `|| true` on a command typed to
+look around; and 6,606 replayable `Edit`/`Write` calls, 94 warned (1.42 %) in 27
+sessions (11,596 edits could not be replayed because the file has since changed
+underneath them), the largest shares `swallowed-stderr` in shell scripts being
+written and `empty-catch` in TypeScript. The measurement changed two things
+before this landed, both in the direction of firing less and never in the
+direction of a lowered bar. The **gate** now reads `cmd 2>/dev/null && next` as
+a status that is checked — it was flagging that shape on 23.8 % of all shell
+calls — with a test and a mutant behind the change. And the **hook** does not
+run `swallowed-stderr` on a command typed into the Bash tool at all, because
+even after that fix the one check still flagged 22.5 % of them, and its premise
+— a script nobody is watching — does not hold for a call whose output the agent
+reads. It still runs on every `.sh` the agent writes.
+
 ## Status
 
 Early, but real and runnable today. What ships with it:
@@ -180,7 +227,7 @@ Early, but real and runnable today. What ships with it:
 - **Starter agents** pre-wired to the codex, to copy or diff against your own.
 - A worked **before/after example**: the same task run with and without the harness, so you can see the floor move rather than take it on faith.
 - A fixed opening **maxim** plus a rotating *maxim of the day* ([MAXIMS.md](MAXIMS.md), [`bin/maxim`](bin/maxim), [`maxims.txt`](maxims.txt)).
-- An executable falsifier, [`gate/fail_open.py`](gate/fail_open.py), with a test suite and a mutation check, run in CI on every push.
+- An executable falsifier, [`gate/fail_open.py`](gate/fail_open.py), with a test suite and a mutation check, run in CI on every push — and live, in warning mode, as a `PreToolUse` hook on every `Bash`, `Edit` and `Write` before the change lands ([`hooks/fail-open-before-run.py`](hooks/fail-open-before-run.py)).
 - A second, smaller gate — [`gate/citations.py`](gate/citations.py) — that refuses any attributed quotation in this repo which does not resolve to a provenance file in [`sources/`](sources/). It is the one piece of gate logic shared verbatim across the conduct-harness family, because a fabricated citation is the same defect in every idiom.
 
 Reported straight, as The Witness demands: **one of the four disciplines has an

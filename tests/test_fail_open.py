@@ -410,6 +410,16 @@ if grep -q TODO src/main.c 2>/dev/null; then
 fi
 """
 
+SH_STDERR_THEN_AND = """\
+#!/bin/sh
+cd build 2>/dev/null && make install
+"""
+
+SH_STDERR_THEN_SEMICOLON_AND = """\
+#!/bin/sh
+cd build 2>/dev/null; make clean && make install
+"""
+
 SH_SET_PLUS_E = """\
 #!/bin/sh
 set -e
@@ -727,6 +737,23 @@ def test_stderr_dropped_inside_a_condition_passes(repo: Path) -> None:
     write(repo, "build.sh", SH_STDERR_IN_A_CONDITION)
     r = check(repo)
     assert r.returncode == 0, r.stdout
+
+
+def test_stderr_dropped_before_an_and_chain_passes(repo: Path) -> None:
+    """`cmd 2>/dev/null && next` reads the status: `next` runs only on success.
+    Measured on 27,426 real shell calls before this case existed, the chained
+    form was the bulk of a 23.8 % flag rate."""
+    write(repo, "build.sh", SH_STDERR_THEN_AND)
+    r = check(repo)
+    assert r.returncode == 0, r.stdout
+
+
+def test_an_and_chain_after_a_semicolon_does_not_read_the_earlier_status(repo: Path) -> None:
+    """The `&&` belongs to the next statement; the `cd` failed in silence."""
+    write(repo, "build.sh", SH_STDERR_THEN_SEMICOLON_AND)
+    r = check(repo)
+    assert r.returncode == 1, r.stdout
+    assert "swallowed-stderr" in r.stdout
 
 
 def test_set_plus_e_that_is_never_re_armed_is_caught(repo: Path) -> None:
