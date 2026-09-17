@@ -47,6 +47,11 @@ MUTANTS = [
      "check_ignored_failure(rel, lines, masked, added, findings)", ""),
     ("shell swallowed-stderr",
      "check_swallowed_stderr(rel, lines, masked, added, findings)", ""),
+    # A false-positive guard is a mechanism too: drop it and the gate fires on
+    # `cmd 2>/dev/null && next`, the shape that made up most of a 23.8 % rate.
+    ("shell swallowed-stderr: a status read by && is not swallowed",
+     "        if STATUS_CHAINED.match(ml[gone.end():]):\n            continue",
+     "        if False:\n            continue"),
     ("shell unguarded-set-plus-e",
      "check_unguarded_set_e(rel, lines, masked, added, findings)", ""),
     ("ci continue-on-error",
