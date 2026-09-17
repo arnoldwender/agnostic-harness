@@ -77,6 +77,10 @@ If you can genuinely beat one of these names, rename it — just keep it a digni
 
 - **Paste the block.** Drop the contents of [`codex-block.md`](codex-block.md) into the instructions your agent already reads — `AGENTS.md`, `CLAUDE.md`, a system prompt, whatever your harness loads. It is the single source the hook and your agent file share.
 - **Or wire the hook.** [`hooks/session-start.sh`](hooks/session-start.sh) emits the first word and the conduct block at the top of every session — see [hooks/](hooks/). Then it's not something you remember to include — it's always on.
+- **Or install it as an Agent Skill.** [`SKILL.md`](SKILL.md) packages the same block in the
+  [Agent Skills](https://agentskills.io/specification) format: clone this repository into your
+  agent's skills directory as `agnostic-harness/` (the directory name must match the skill name).
+  Verified on Claude Code 2.1.273 (2026-09-17); other hosts that read the format were not run.
 - **Always active; intensity scales with the stakes.** It is never heavy. A one-line fix invokes it lightly; a destructive migration, a payment path, or a release invokes every rule at full weight. The agent reads the stakes and turns the dial itself — you don't maintain per-task profiles.
 
 ## The first word
